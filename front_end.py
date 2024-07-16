@@ -29,15 +29,18 @@ if st.session_state.pyg == True:
   uploaded_file = st.file_uploader("Upload xlsx or csv", accept_multiple_files=False)
   import tempfile
   import os
-  temp_dir = tempfile.mkdtemp()
-  path = os.path.join(temp_dir, uploaded_file.name)
-  with open(path, "wb") as f:
-    f.write(uploaded_file.getvalue())
-  
   try:
-    df = pd.read_excel(path)
+    temp_dir = tempfile.mkdtemp()
+    path = os.path.join(temp_dir, uploaded_file.name)
+    with open(path, "wb") as f:
+      f.write(uploaded_file.getvalue())
+    
+    try:
+      df = pd.read_excel(path)
+    except:
+      df = pd.read_csv(path)
+    pyg_app = StreamlitRenderer(df)
+    pyg_app.explorer()
   except:
-    df = pd.read_csv(path)
-  pyg_app = StreamlitRenderer(df)
-  pyg_app.explorer()
+    pass
   
