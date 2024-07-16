@@ -6,7 +6,7 @@ import warnings
 warnings.filterwarnings('ignore')
 st.set_page_config(layout='wide')
 
-head_button_col1, head_button_col1 = st.columns([1, 1])
+head_button_col1, head_button_col2 = st.columns([1, 1])
 
 if 'pyg' not in st.session_state:
   st.session_state.pyg = False
