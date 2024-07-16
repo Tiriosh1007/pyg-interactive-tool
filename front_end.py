@@ -8,7 +8,7 @@ st.set_page_config(layout='wide')
 
 head_button_col1, head_button_col1 = st.columns([1, 1])
 
-if 'pyg' is not in st.session_state:
+if 'pyg' not in st.session_state:
   st.session_state.pyg = False
 
 with head_button_col1:
@@ -16,7 +16,7 @@ with head_button_col1:
     st.session_state.pyg = False
     st.cache_resource.clear()
 with head_button_col2:
-  if st.button('PyGWalker')
+  if st.button('PyGWalker'):
     st.session_state.pyg = True
     
 
@@ -33,6 +33,7 @@ if st.session_state.pyg == True:
   path = os.path.join(temp_dir, uploaded_file.name)
   with open(path, "wb") as f:
     f.write(uploaded_file.getvalue())
+  
   try:
     df = pd.read_excel(path)
   except:
