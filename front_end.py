@@ -39,6 +39,7 @@ if st.session_state.pyg == True:
       df = pd.read_excel(path)
     except:
       df = pd.read_csv(path)
+    st.write('---')
     pyg_app = StreamlitRenderer(df)
     pyg_app.explorer()
   except:
